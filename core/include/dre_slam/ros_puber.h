@@ -17,7 +17,7 @@
 #ifndef ROS_PUBER_H
 #define ROS_PUBER_H
 
-#include <ros/ros.h>
+#include <rclcpp/rclcpp.hpp>
 #include <image_transport/image_transport.h>
 #include <octomap_msgs/Octomap.h>
 #include <octomap/octomap.h>

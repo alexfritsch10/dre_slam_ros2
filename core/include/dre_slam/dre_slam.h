@@ -28,42 +28,43 @@
 #include <dre_slam/loop_closing.h>
 #include <dre_slam/optimizer.h>
 
-namespace dre_slam{
+namespace dre_slam
+{
 
-class DRE_SLAM{
-public:
-	DRE_SLAM(  ros::NodeHandle& nh, Config* cfg, const std::string& orbvoc_dir, const std::string& yolov3_classes_dir, const std::string& yolov3_model_dir, const std::string& yolov3_weights_dir );
-	
-	void addRGBDImage(const cv::Mat& rgb, const cv::Mat& depth, const double& timestamp);
-	void addEncoder(const double& enc_l, const double& enc_r, const double& timestamp);
-	
-	// Save Results
-	void saveMapPoints(const std::string& dir);
-	void saveKeyFrames(const std::string& dir);
-	void saveFrames(const std::string& dir);
-	void saveOctoMap(const std::string& dir);
-	
-private:
-	Config* cfg_;
- 	Camera* cam_;
- 	
- 	Map* map_;
- 	Tracking* tracking_;
- 	DynamicPixelCulling* dynamic_pixel_culling_;
-	LocalMapping* local_mapping_;
-	LoopClosing* loop_closing_;
-	SubOctoMapConstruction* sub_octomap_construction_;
-	OctoMapFusion* octomap_fusion_;
-	Optimizer* optimizer_;
-	RosPuber* ros_puber_;
-	
-	Vocabulary* orb_voc_;
- 	ObjectDetector* objector_detector_;
-	
-}; // class DRE_SLAM
-	
-	
+	class DRE_SLAM
+	{
+	public:
+		DRE_SLAM(rclcpp::Node *node, Config *cfg, const std::string &orbvoc_dir,
+				 const std::string &yolov3_classes_dir, const std::string &yolov3_model_dir,
+				 const std::string &yolov3_weights_dir);
+		void addRGBDImage(const cv::Mat &rgb, const cv::Mat &depth, const double &timestamp);
+		void addEncoder(const double &enc_l, const double &enc_r, const double &timestamp);
+
+		// Save Results
+		void saveMapPoints(const std::string &dir);
+		void saveKeyFrames(const std::string &dir);
+		void saveFrames(const std::string &dir);
+		void saveOctoMap(const std::string &dir);
+
+	private:
+		Config *cfg_;
+		Camera *cam_;
+
+		Map *map_;
+		Tracking *tracking_;
+		DynamicPixelCulling *dynamic_pixel_culling_;
+		LocalMapping *local_mapping_;
+		LoopClosing *loop_closing_;
+		SubOctoMapConstruction *sub_octomap_construction_;
+		OctoMapFusion *octomap_fusion_;
+		Optimizer *optimizer_;
+		RosPuber *ros_puber_;
+
+		Vocabulary *orb_voc_;
+		ObjectDetector *objector_detector_;
+
+	}; // class DRE_SLAM
+
 } // namespace dre_slam
-
 
 #endif // DRE_SLAM_H

@@ -28,30 +28,27 @@
 namespace dre_slam
 {
 
-RosPuber::RosPuber ( ros::NodeHandle& nh )
-{
-	
-    // Current frame.
-    puber_robot_pose_ = nh.advertise<geometry_msgs::PoseStamped> ( "dre_slam/cur_robot_pose", 1, true );
-    image_transport::ImageTransport it ( nh );
-    puber_img_match_ = it.advertise ( "dre_slam/cur_img_match", 1, true );
+RosPuber::RosPuber(rclcpp::Node::SharedPtr node) : node_(node) {
+    // Initialize publishers
+    puber_robot_pose_ = node_->create_publisher<geometry_msgs::msg::PoseStamped>("dre_slam/cur_robot_pose", 1);
+    image_transport::ImageTransport it(node_);
+    puber_img_match_ = it.advertise("dre_slam/cur_img_match", 1);
 
-    // Dynamic pixel culling.
-    puber_dpc_img_objects_ = it.advertise ( "dre_slam/dpc_img_objects", 1, true );
-    puber_dpc_img_clusters_ = it.advertise ( "dre_slam/dpc_img_clusters", 1, true );
-    puber_dpc_img_mask_ = it.advertise ( "dre_slam/dpc_img_mask", 1, true );
+    // Dynamic pixel culling
+    puber_dpc_img_objects_ = it.advertise("dre_slam/dpc_img_objects", 1);
+    puber_dpc_img_clusters_ = it.advertise("dre_slam/dpc_img_clusters", 1);
+    puber_dpc_img_mask_ = it.advertise("dre_slam/dpc_img_mask", 1);
 
     // KFs and pose graph. Sparse Map
-    puber_mappoints_ = nh.advertise<sensor_msgs::PointCloud> ( "dre_slam/mappoints", 1, true );
-    puber_kfs_puber_ = nh.advertise<geometry_msgs::PoseArray> ( "dre_slam/keyframes", 1, true );
-    puber_encoder_graph_ = nh.advertise<visualization_msgs::Marker> ( "dre_slam/encoder_graph", 1, true );
-    puber_loop_graph_ = nh.advertise<visualization_msgs::Marker> ( "dre_slam/loop_graph", 1, true );
-    puber_visual_graph_ = nh.advertise<visualization_msgs::Marker> ( "dre_slam/visual_graph", 1, true );
+    puber_mappoints_ = node_->create_publisher<sensor_msgs::msg::PointCloud>("dre_slam/mappoints", 1);
+    puber_kfs_puber_ = node_->create_publisher<geometry_msgs::msg::PoseArray>("dre_slam/keyframes", 1);
+    puber_encoder_graph_ = node_->create_publisher<visualization_msgs::msg::Marker>("dre_slam/encoder_graph", 1);
+    puber_loop_graph_ = node_->create_publisher<visualization_msgs::msg::Marker>("dre_slam/loop_graph", 1);
+    puber_visual_graph_ = node_->create_publisher<visualization_msgs::msg::Marker>("dre_slam/visual_graph", 1);
 
     // OctoMap
-    puber_octomap_ = nh.advertise<octomap_msgs::Octomap> ( "dre_slam/octomap", 1, true );
-
-} // RosPuber
+    puber_octomap_ = node_->create_publisher<octomap_msgs::msg::Octomap>("dre_slam/octomap", 1);
+}
 
 void RosPuber::pubCurrentFrame ( Frame* frame )
 {

@@ -77,6 +77,7 @@ add_executable(dre_slam_node
 target_link_libraries(dre_slam_node
   ${PROJECT_NAME}_lib
   ${rclcpp_LIBRARIES}
+  image_transport::image_transport
 )
 
 ## Install targets

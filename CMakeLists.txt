@@ -16,7 +16,6 @@ find_package(OpenCV 4 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Ceres REQUIRED)
 find_package(Sophus REQUIRED)
-find_package(octomap REQUIRED)
 
 ## Include directories
 include_directories(
@@ -26,7 +25,6 @@ include_directories(
   ${PCL_INCLUDE_DIRS}
   ${CERES_INCLUDE_DIRS}
   ${Sophus_INCLUDE_DIRS}
-  ${OCTOMAP_INCLUDE_DIRS}
   ${PROJECT_SOURCE_DIR}
   ${PROJECT_SOURCE_DIR}/core/include/
   ${PROJECT_SOURCE_DIR}/third_party/
@@ -59,14 +57,14 @@ add_library(${PROJECT_NAME}_lib
 
 target_link_libraries(${PROJECT_NAME}_lib
   ${rclcpp_LIBRARIES}
-  ${OpenCV_LIBS}
-  ${EIGEN3_LIBS}
-  ${PCL_LIBRARIES}
-  ${CERES_LIBRARIES}
-  ${Sophus_LIBRARIES}
-  ${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
-  ${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so
-  ${OCTOMAP_LIBRARIES}
+	${OpenCV_LIBS}
+	${EIGEN3_LIBS}
+	${PCL_LIBRARIES}
+	${CERES_LIBRARIES}
+	${Sophus_LIBRARIES}
+	${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
+	${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so
+	${OCTOMAP_LIBRARIES}
 )
 
 ## Declare an executable

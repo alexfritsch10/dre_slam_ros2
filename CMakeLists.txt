@@ -9,7 +9,6 @@ set(CMAKE_BUILD_TYPE Release)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(cv_bridge REQUIRED)
-find_package(image_transport REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(pcl_ros REQUIRED)
@@ -28,7 +27,6 @@ include_directories(
   ${CERES_INCLUDE_DIRS}
   ${Sophus_INCLUDE_DIRS}
   ${OCTOMAP_INCLUDE_DIRS}
-  ${image_transport_INCLUDE_DIRS}
   ${PROJECT_SOURCE_DIR}
   ${PROJECT_SOURCE_DIR}/core/include/
   ${PROJECT_SOURCE_DIR}/third_party/
@@ -78,7 +76,6 @@ add_executable(dre_slam_node
 target_link_libraries(dre_slam_node
   ${PROJECT_NAME}_lib
   ${rclcpp_LIBRARIES}
-  image_transport::image_transport
 )
 
 ## Install targets

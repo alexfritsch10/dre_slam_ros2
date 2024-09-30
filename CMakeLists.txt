@@ -28,6 +28,7 @@ include_directories(
   ${CERES_INCLUDE_DIRS}
   ${Sophus_INCLUDE_DIRS}
   ${OCTOMAP_INCLUDE_DIRS}
+  ${image_transport_INCLUDE_DIRS}
   ${PROJECT_SOURCE_DIR}
   ${PROJECT_SOURCE_DIR}/core/include/
   ${PROJECT_SOURCE_DIR}/third_party/

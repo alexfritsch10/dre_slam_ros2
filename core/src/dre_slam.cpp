@@ -19,12 +19,12 @@
 namespace dre_slam
 {
 
-    DRE_SLAM::DRE_SLAM(rclcpp::Node *node, Config *cfg, const std::string &orbvoc_dir,
+    DRE_SLAM::DRE_SLAM(rclcpp::Node::SharedPtr node, Config *cfg, const std::string &orbvoc_dir,
                        const std::string &yolov3_classes_dir, const std::string &yolov3_model_dir,
                        const std::string &yolov3_weights_dir)
         : cfg_(cfg)
     {
-        // Load ORB Vocabulary.
+        // Load ORB Vocabulary.rclcpp::Node *node
         orb_voc_ = new Vocabulary();
         bool is_ok = orb_voc_->loadFromBinaryFile(orbvoc_dir);
         if (!is_ok)

@@ -41,6 +41,8 @@ include_directories(
   /opt/ros/humble/include/tf2_ros
   /opt/ros/humble/include/tf2_msgs
   /opt/ros/humble/include/visualization_msgs
+  /opt/ros/humble/include/cv_bridge
+  /opt/ros/humble/include/sensor_msgs
 )
 
 ## Declare a C++ library

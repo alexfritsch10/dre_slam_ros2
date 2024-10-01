@@ -3,10 +3,15 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <image_transport/image_transport.hpp>
-#include <octomap_msgs/msg/octomap.h>
+#include <octomap_msgs/msg/octomap.hpp>
 #include <octomap/octomap.h>
 #include <octomap_ros/conversions.hpp>
 #include <dre_slam/map.h>
+#include <geometry_msgs/msg/pose_stamped.hpp>   // For geometry_msgs::msg::PoseStamped
+#include <geometry_msgs/msg/pose_array.hpp>     // For geometry_msgs::msg::PoseArray
+#include <sensor_msgs/msg/point_cloud2.hpp>     // For sensor_msgs::msg::PointCloud2
+#include <visualization_msgs/msg/marker.hpp>    // For visualization_msgs::msg::Marker
+
 
 namespace dre_slam {
 
@@ -33,8 +38,8 @@ private:
     image_transport::Publisher puber_dpc_img_mask_;
 
     // KFs and pose graph. Sparse Map
-    rclcpp::Publisher<sensor_msgs::msg::PointCloud>::SharedPtr puber_mappoints_;
-    rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr puber_kfs_puber_;
+	rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr puber_mappoints_;    
+	rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr puber_kfs_puber_;
     rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr puber_encoder_graph_;
     rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr puber_loop_graph_;
     rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr puber_visual_graph_;

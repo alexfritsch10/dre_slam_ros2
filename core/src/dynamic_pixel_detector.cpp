@@ -16,7 +16,6 @@
 
 #include <dre_slam/dynamic_pixel_detector.h>
 #include <dre_slam/run_timer.h>
-#include <opencv2/core.hpp>
 
 namespace dre_slam
 {
@@ -212,7 +211,7 @@ void DynamicPixelDetector::segmentPointCloudByKmeans ( const vector< Eigen::Vect
 
     // Do Kmeans
     cv::Mat labels;
-    cv::TermCriteria criteria = cv::TermCriteria ( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 1.0 );
+    cv::TermCriteria criteria = cv::TermCriteria ( 1 + 2, 10, 1.0 );
     cv::kmeans ( points, n_clusters, labels, criteria, 3, cv::KMEANS_PP_CENTERS, centers );
 
     // Collect clusters.

@@ -34,7 +34,7 @@ namespace dre_slam
 	class DRE_SLAM
 	{
 	public:
-		DRE_SLAM(rclcpp::Node *node, Config *cfg, const std::string &orbvoc_dir,
+		DRE_SLAM(rclcpp::Node::SharedPtr node, Config *cfg, const std::string &orbvoc_dir,
 				 const std::string &yolov3_classes_dir, const std::string &yolov3_model_dir,
 				 const std::string &yolov3_weights_dir);
 		void addRGBDImage(const cv::Mat &rgb, const cv::Mat &depth, const double &timestamp);

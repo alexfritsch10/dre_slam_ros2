@@ -19,8 +19,8 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/msg/point_cloud.h>
-#include <geometry_msgs/pose_stamped.h>
-#include <geometry_msgs/pose_array.h>
+#include <geometry_msgs/msg/pose_stamped.h>
+#include <geometry_msgs/msg/pose_array.h>
 #include <visualization_msgs/msg/marker_array.h>
 
 #include <dre_slam/run_timer.h>

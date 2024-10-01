@@ -3,7 +3,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <image_transport/image_transport.hpp>
-#include <octomap_msgs/Octomap.h>
+#include <octomap_msgs/msg/octomap.h>
 #include <octomap/octomap.h>
 #include <octomap_msgs/conversions.hpp>
 #include <dre_slam/map.h>

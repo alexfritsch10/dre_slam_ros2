@@ -12,11 +12,15 @@ find_package(cv_bridge REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(image_transport REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(pcl_ros REQUIRED)
 find_package(OpenCV 4 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Ceres REQUIRED)
 find_package(Sophus REQUIRED)
+find_package(octomap REQUIRED)
+find_package(octomap_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 
 ## Include directories
 include_directories(
@@ -26,9 +30,12 @@ include_directories(
   ${PCL_INCLUDE_DIRS}
   ${CERES_INCLUDE_DIRS}
   ${Sophus_INCLUDE_DIRS}
+  ${OCTOMAP_INCLUDE_DIRS}
   ${PROJECT_SOURCE_DIR}
   ${PROJECT_SOURCE_DIR}/core/include/
   ${PROJECT_SOURCE_DIR}/third_party/
+  /opt/ros/humble/include/image_transport
+  /opt/ros/humble/include/octomap_msgs
 )
 
 ## Declare a C++ library
@@ -56,28 +63,39 @@ add_library(${PROJECT_NAME}_lib
   core/src/sub_octomap_construction.cpp
 )
 
+## Link libraries for the library target
 target_link_libraries(${PROJECT_NAME}_lib
   ${rclcpp_LIBRARIES}
-	${OpenCV_LIBS}
-	${EIGEN3_LIBS}
-	${PCL_LIBRARIES}
-	${CERES_LIBRARIES}
+  ${OpenCV_LIBS}
+  ${EIGEN3_LIBS}
+  ${PCL_LIBRARIES}
+  ${CERES_LIBRARIES}
+  ${Sophus_LIBRARIES}
   ${image_transport_LIBRARIES}
-	${Sophus_LIBRARIES}
-	${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
-	${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so
-	${OCTOMAP_LIBRARIES}
+  ${OCTOMAP_LIBRARIES}
+  ${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
+  ${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so
 )
 
-## Declare an executable
+## Declare an executable and link dependencies
 add_executable(${PROJECT_NAME}_node
   node/dre_slam_node.cpp)
 
+# Declare ament dependencies for the executable target
 ament_target_dependencies(${PROJECT_NAME}_node
   rclcpp
+  cv_bridge
+  geometry_msgs
   image_transport
+  message_filters
+  sensor_msgs
+  pcl_ros
+  octomap
+  octomap_msgs
+  visualization_msgs
 )
 
+# Link libraries for the executable
 target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}_lib
   ${rclcpp_LIBRARIES}
@@ -92,5 +110,5 @@ install(DIRECTORY core/include/
 )
 
 ## Ament export dependencies
-ament_export_dependencies(rclcpp cv_bridge image_transport geometry_msgs message_filters pcl_ros)
+ament_export_dependencies(rclcpp cv_bridge image_transport geometry_msgs message_filters pcl_ros octomap octomap_msgs visualization_msgs)
 ament_package()

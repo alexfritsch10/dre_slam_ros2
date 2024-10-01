@@ -37,6 +37,7 @@ include_directories(
   /opt/ros/humble/include/image_transport
   /opt/ros/humble/include/octomap_msgs
   /opt/ros/humble/include/geometry_msgs
+  /opt/ros/humble/include/tf2
 )
 
 ## Declare a C++ library

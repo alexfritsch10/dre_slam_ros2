@@ -16,6 +16,7 @@
 
 #include <dre_slam/dynamic_pixel_detector.h>
 #include <dre_slam/run_timer.h>
+#include <opencv2/core.hpp>
 
 namespace dre_slam
 {

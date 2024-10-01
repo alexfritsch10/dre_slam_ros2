@@ -38,6 +38,7 @@ include_directories(
   /opt/ros/humble/include/octomap_msgs
   /opt/ros/humble/include/geometry_msgs
   /opt/ros/humble/include/tf2
+  /opt/ros/humble/include/visualization_msgs
 )
 
 ## Declare a C++ library
@@ -78,7 +79,7 @@ target_link_libraries(${PROJECT_NAME}_lib
   ${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
   ${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so
 )
-cpp
+
 ## Declare an executable and link dependencies
 add_executable(${PROJECT_NAME}_node
   node/dre_slam_node.cpp)

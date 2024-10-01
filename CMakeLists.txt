@@ -38,7 +38,7 @@ include_directories(
   /opt/ros/humble/include/octomap_msgs
   /opt/ros/humble/include/geometry_msgs
   /opt/ros/humble/include/tf2
-  /opt/ros/humble/include/tf2-ros
+  /opt/ros/humble/include/tf2_ros
   /opt/ros/humble/include/visualization_msgs
 )
 

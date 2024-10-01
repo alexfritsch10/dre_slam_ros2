@@ -79,6 +79,8 @@ target_link_libraries(${PROJECT_NAME}_lib
   ${CERES_LIBRARIES}
   ${Sophus_LIBRARIES}
   ${image_transport_LIBRARIES}
+  ${sensor_msgs_LIBRARIES}
+  ${cv_bridge_LIBRARIES}
   ${OCTOMAP_LIBRARIES}
   ${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
   ${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so

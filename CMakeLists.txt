@@ -11,6 +11,7 @@ find_package(rclcpp REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(message_filters REQUIRED)
+find_package(image_transport REQUIRED)
 find_package(pcl_ros REQUIRED)
 find_package(OpenCV 4 REQUIRED)
 find_package(Eigen3 REQUIRED)
@@ -61,20 +62,21 @@ target_link_libraries(${PROJECT_NAME}_lib
 	${EIGEN3_LIBS}
 	${PCL_LIBRARIES}
 	${CERES_LIBRARIES}
+  ${image_transport_LIBRARIES}
 	${Sophus_LIBRARIES}
 	${PROJECT_SOURCE_DIR}/third_party/DBoW2/lib/libDBoW2.so
 	${PROJECT_SOURCE_DIR}/object_detector/lib/libobject_detector.so
 	${OCTOMAP_LIBRARIES}
 )
 
+## Declare an executable
+add_executable(${PROJECT_NAME}_node
+  node/dre_slam_node.cpp)
+
 ament_target_dependencies(${PROJECT_NAME}_node
   rclcpp
   image_transport
 )
-
-## Declare an executable
-add_executable(${PROJECT_NAME}_node
-  node/dre_slam_node.cpp)
 
 target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}_lib

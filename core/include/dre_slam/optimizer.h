@@ -47,13 +47,8 @@ public:
 private:
     Config* cfg_;
     Map* map_;
-    Eigen::Matrix2d sqrtMatrix2d(const Eigen::Matrix2d& TT);
-    
     template <typename T>
     T sqrtMatrix(const T& TT);
-    
-    Eigen::Matrix3d sqrtMatrix3d(const Eigen::Matrix3d& TT);
-    
 };//class Optimizer
 
 } //namespace dre_slam

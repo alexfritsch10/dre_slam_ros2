@@ -67,17 +67,22 @@ target_link_libraries(${PROJECT_NAME}_lib
 	${OCTOMAP_LIBRARIES}
 )
 
+ament_target_dependencies(${PROJECT_NAME}_node
+  rclcpp
+  image_transport
+)
+
 ## Declare an executable
-add_executable(dre_slam_node
+add_executable(${PROJECT_NAME}_node
   node/dre_slam_node.cpp)
 
-target_link_libraries(dre_slam_node
+target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}_lib
   ${rclcpp_LIBRARIES}
 )
 
 ## Install targets
-install(TARGETS dre_slam_node ${PROJECT_NAME}_lib
+install(TARGETS ${PROJECT_NAME}_node ${PROJECT_NAME}_lib
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY core/include/

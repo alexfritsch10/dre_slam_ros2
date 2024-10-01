@@ -2,10 +2,10 @@
 #define ROS_PUBER_H
 
 #include <rclcpp/rclcpp.hpp>
-#include <image_transport/image_transport.h>
+#include <image_transport/image_transport.hpp>
 #include <octomap_msgs/Octomap.h>
 #include <octomap/octomap.h>
-#include <octomap_msgs/conversions.h>
+#include <octomap_msgs/conversions.hpp>
 #include <dre_slam/map.h>
 
 namespace dre_slam {
